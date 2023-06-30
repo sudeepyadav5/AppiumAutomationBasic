@@ -1,0 +1,5 @@
+22/12/22 10:05:37 AM Thursday - CustomLoggerDemo - CRITICAL : The critical message
+22/12/22 10:05:37 AM Thursday - CustomLoggerDemo - ERROR : The is error message
+22/12/22 10:05:37 AM Thursday - CustomLoggerDemo - WARNING : This is Warning Message
+22/12/22 10:05:37 AM Thursday - CustomLoggerDemo - INFO : This is Info Message
+22/12/22 10:05:37 AM Thursday - CustomLoggerDemo - DEBUG : This is Debug Message
