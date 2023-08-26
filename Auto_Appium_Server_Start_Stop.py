@@ -1,28 +1,33 @@
-import subprocess
+from appium import webdriver
+from appium.webdriver.common.mobileby import MobileBy
 import time
 
+# Step 1 : Import Appium Service class
+from appium.webdriver.appium_service import AppiumService
 
-def start_appium_server():
-    # Start the Appium server using CLI command
-    subprocess.Popen("appium", shell=True)
+# Step 2 : Create object for Appium Service class
+appium_service = AppiumService()
 
-    # Wait for the server to start
-    time.sleep(10)
-    print("Appium server started.")
+# Step 3 : Call Start method by using Appium Service class object
+appium_service.start(args=['--base-path', '/wd/hub'])
 
+# Step 4 : Create "Desired Capabilities"
+desired_caps = {}
+desired_caps['platformName'] = 'Android'
+desired_caps['automationName'] = 'UiAutomator2'
+desired_caps['platformVersion'] = '10'
+desired_caps['deviceName'] = 'Xiaomi M2006C3MII'
+desired_caps['app'] = 'C:/Users/3Embed/Python_Ast/ApkFile/Android_Demo_App.apk'
+desired_caps['appPackage'] = 'com.code2lead.kwad'
+desired_caps['appActivity'] = 'com.code2lead.kwad.MainActivity'
 
-def stop_appium_server():
-    # Stop the Appium server using CLI command
-    subprocess.Popen("pkill -f appium", shell=True)
+driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", desired_caps)
 
-    # Wait for the server to stop
-    time.sleep(5)
-    print("Appium server stopped.")
+ele_id = driver.find_element(MobileBy.ID, "com.code2lead.kwad:id/EnterValue")
+ele_id.click()
 
+time.sleep(5)
+driver.quit()
 
-# Example usage
-start_appium_server()
-
-# Your test code here...
-
-stop_appium_server()
+# Step 5 : Call stop method by using Appium Service class object
+appium_service.stop()
